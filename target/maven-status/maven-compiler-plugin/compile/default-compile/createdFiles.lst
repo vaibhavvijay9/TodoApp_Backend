@@ -1,0 +1,10 @@
+com\todoapp\api\UserResource.class
+com\todoapp\bean\Task.class
+com\todoapp\api\CorsFilter.class
+com\todoapp\bean\User.class
+com\todoapp\resources\DBInfo.class
+com\todoapp\resources\Utility.class
+com\todoapp\api\Demo.class
+com\todoapp\bean\ResponseBean.class
+com\todoapp\bean\Category.class
+com\todoapp\bean\DemoBean.class
