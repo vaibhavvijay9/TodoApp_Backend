@@ -42,8 +42,8 @@ public class TaskResource
 		{
 			ArrayList<Category> dashboard = new ArrayList<Category>();
 			
-			String query = "select c.category_id,c.category_name,count(*) from tasks t, categories c where t.category_id = c.category_id AND t.username=? group by c.category_id;";
-			
+//			String query = "select c.category_id,c.category_name,count(*) from tasks t, categories c where t.category_id = c.category_id AND t.username=? group by c.category_id;";
+			String query = "SELECT c.category_id,c.category_name,count(t.task_id) as task_count FROM categories c LEFT join tasks t ON c.category_id=t.category_id where c.username=? GROUP by c.category_id";
 			try
 			{
 				Connection con=DBInfo.getConn();	
@@ -86,7 +86,7 @@ public class TaskResource
 		else
 		{	
 			ArrayList<Task> tasks = new ArrayList<Task>();
-			String query = "select * from tasks where username=? and category_id=?;";
+			String query = "select t.*,c.* from tasks t, categories c where t.username=? and t.category_id = ? and t.category_id = c.category_id;";
 			
 			try
 			{
@@ -104,6 +104,7 @@ public class TaskResource
 					task.setTaskDescription(res.getString(2));
 					task.setTaskDate(res.getDate(3));
 					task.setCompleted(res.getBoolean(4));
+					task.setCategoryName(res.getString(8));
 					
 					tasks.add(task);
 				}
@@ -119,7 +120,7 @@ public class TaskResource
 	}
 	
 	@POST
-	@Path("/addtask")
+	@Path("/addTask")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addTask(@HeaderParam("authToken") String authToken, Task task)
@@ -132,7 +133,7 @@ public class TaskResource
 		}
 		else
 		{
-			String query = "insert into tasks(task_description,task_date,is_completed,username) values(?,?,?,?)";
+			String query = "insert into tasks(task_description,task_date,is_completed,username,category_id) values(?,?,?,?,?);";
 			int isAdded = 0;
 			try
 			{
@@ -142,6 +143,7 @@ public class TaskResource
 				ps.setDate(2, task.getTaskDate());
 				ps.setBoolean(3, false);
 				ps.setString(4, user.getUsername());
+				ps.setInt(5, task.getCategoryId());
 				
 				isAdded = ps.executeUpdate();
 				
@@ -157,7 +159,7 @@ public class TaskResource
 	}
 	
 	@PUT
-	@Path("/updatetask")
+	@Path("/updateTask")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateTask(@HeaderParam("authToken") String authToken, Task task)

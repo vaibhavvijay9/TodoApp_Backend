@@ -22,7 +22,7 @@ public class DBInfo {
 	{
 		try
 		{
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/todoapp","root","rat");	
+			con=DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/q81zCjWlOo","q81zCjWlOo","KyC71cdmR2");	
 		}
 		catch(Exception e)
 		{

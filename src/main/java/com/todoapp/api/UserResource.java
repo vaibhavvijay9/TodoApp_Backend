@@ -87,6 +87,7 @@ public class UserResource {
 		}
 		
 		String query="select * from users where username=? and password=?";
+		
 		try
 		{
 			Connection con=DBInfo.getConn();	
@@ -102,7 +103,7 @@ public class UserResource {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
 				String formattedDate = sdf.format(date);
 				
-				token = res.getString(1) + formattedDate;
+				token = res.getString(3) + "-" +res.getString(1) + formattedDate;
 				String base64EncodedToken = Base64.getEncoder().encodeToString((token).getBytes("utf-8"));
 				
 				String query1="insert into sessions values(?,?)";
@@ -121,6 +122,36 @@ public class UserResource {
 			e.printStackTrace();
 		}
 		return Response.status(200).entity(responseBean).build();
+	}
+	
+	
+	@POST
+	@Path("/logout")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response logout(ResponseBean inputValue)
+	{
+		ResponseBean responseBean = new ResponseBean();
+		responseBean.setMessage("failure");
+		responseBean.setToken("");
+		
+		
+		String query="delete from sessions where token=?";
+		int isDeleted = 0;
+		try
+		{
+			Connection con=DBInfo.getConn();	
+			PreparedStatement ps=con.prepareStatement(query);
+			ps.setString(1, inputValue.getToken());
+			
+			isDeleted = ps.executeUpdate();
+			con.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return Response.status(200).entity(isDeleted).build();
 	}
 	
 	

@@ -9,6 +9,7 @@ public class Task {
 	private boolean completed;
 	private String username;
 	private int categoryId;
+	private String categoryName;
 	
 	public int getTaskId() {
 		return taskId;
@@ -47,11 +48,17 @@ public class Task {
 		this.categoryId = categoryId;
 	}
 	
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 	public Task() {
 		super();
 	}
-	
-	public Task(int taskId, String taskDescription, Date taskDate, boolean completed, String username, int categoryId) {
+	public Task(int taskId, String taskDescription, Date taskDate, boolean completed, String username, int categoryId,
+			String categoryName) {
 		super();
 		this.taskId = taskId;
 		this.taskDescription = taskDescription;
@@ -59,11 +66,14 @@ public class Task {
 		this.completed = completed;
 		this.username = username;
 		this.categoryId = categoryId;
+		this.categoryName = categoryName;
 	}
-	
 	@Override
 	public String toString() {
 		return "Task [taskId=" + taskId + ", taskDescription=" + taskDescription + ", taskDate=" + taskDate
-				+ ", completed=" + completed + ", username=" + username + ", categoryId=" + categoryId + "]";
-	}	
+				+ ", completed=" + completed + ", username=" + username + ", categoryId=" + categoryId
+				+ ", categoryName=" + categoryName + "]";
+	}
+	
+	
 }

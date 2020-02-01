@@ -1,7 +1,8 @@
 F:\Eclipse neon\TodoApp_Backend\src\main\java\com\todoapp\api\UserResource.java
+F:\Eclipse neon\TodoApp_Backend\src\main\java\com\todoapp\api\TaskResource.java
 F:\Eclipse neon\TodoApp_Backend\src\main\java\com\todoapp\api\CorsFilter.java
-F:\Eclipse neon\TodoApp_Backend\src\main\java\com\todoapp\bean\DemoBean.java
 F:\Eclipse neon\TodoApp_Backend\src\main\java\com\todoapp\bean\User.java
+F:\Eclipse neon\TodoApp_Backend\src\main\java\com\todoapp\api\CategoryResource.java
 F:\Eclipse neon\TodoApp_Backend\src\main\java\com\todoapp\api\Demo.java
 F:\Eclipse neon\TodoApp_Backend\src\main\java\com\todoapp\bean\Category.java
 F:\Eclipse neon\TodoApp_Backend\src\main\java\com\todoapp\resources\DBInfo.java
