@@ -22,7 +22,7 @@ public class DBInfo {
 	{
 		try
 		{
-			con=DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/q81zCjWlOo","q81zCjWlOo","KyC71cdmR2");	
+			con=DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/EwCrI8I67b","EwCrI8I67b","rs7jZmRGfy");	
 		}
 		catch(Exception e)
 		{
